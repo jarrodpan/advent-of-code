@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const input = fs.readFileSync('./2023/01/01.input.txt', 'utf-8').split('\n');
+const input = fs.readFileSync('./2023/01/input.txt', 'utf-8').split('\n');
 
 let ans = 0;
 
