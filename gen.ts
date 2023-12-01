@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { exec } from 'child_process';
 
 const [_node, _script, arg] = process.argv;
 
@@ -25,3 +26,5 @@ fs.writeFileSync(
 console.log('Advent of Code ${arg}');
 const input = fs.readFileSync('./${arg}/input.txt', 'utf-8');`
 );
+
+exec(`code ./${arg}/index.ts`);
