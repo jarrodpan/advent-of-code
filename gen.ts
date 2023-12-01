@@ -17,14 +17,23 @@ try {
 } catch (e) {}
 
 fs.writeFileSync(`./${arg}/input.txt`, '');
-fs.writeFileSync(`./${arg}/test.txt`, '');
-fs.writeFileSync(`./${arg}/test2.txt`, '');
+// fs.writeFileSync(`./${arg}/test.txt`, '');
+// fs.writeFileSync(`./${arg}/test2.txt`, '');
 fs.writeFileSync(
   `./${arg}/index.ts`,
   `import fs from 'fs';
 
 console.log('Advent of Code ${arg}');
-const input = fs.readFileSync('./${arg}/input.txt', 'utf-8');`
+const input = fs.readFileSync('./${arg}/input.txt', 'utf-8');
+
+let ans = 0;
+
+for (let i = 0; i < input.length; i++) {
+  const line = input[i];
+}
+
+console.log({ ans });
+`
 );
 
 exec(`code ./${arg}/index.ts`);
