@@ -17,8 +17,8 @@ try {
 } catch (e) {}
 
 fs.writeFileSync(`./${arg}/input.txt`, '');
-// fs.writeFileSync(`./${arg}/test.txt`, '');
-// fs.writeFileSync(`./${arg}/test2.txt`, '');
+fs.writeFileSync(`./${arg}/test.txt`, '');
+fs.writeFileSync(`./${arg}/test2.txt`, '');
 fs.writeFileSync(
   `./${arg}/index.ts`,
   `import fs from 'fs';
