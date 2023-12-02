@@ -24,7 +24,7 @@ fs.writeFileSync(
   `import fs from 'fs';
 
 console.log('Advent of Code ${arg}');
-const input = fs.readFileSync('./${arg}/input.txt', 'utf-8').split('\n');
+const input = fs.readFileSync('./${arg}/input.txt', 'utf-8').split('\\n');
 
 let ans = 0;
 
