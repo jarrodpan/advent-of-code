@@ -38,4 +38,4 @@ console.log({ ans });
 `
 );
 
-exec(`code ./${arg}/index.ts`);
+exec(`code ./${arg}/*`);
