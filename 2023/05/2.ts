@@ -44,33 +44,37 @@ for (let i = 0; i < input.length; i++) {
       let transformStart = x;
       let transformEnd = x + range - 1;
 
+      let deadSeeds = new Set<number[]>();
+
       for (const seed of seeds!) {
         const [start, end] = seed;
-        if (end < mapStart) continue;
-        if (mapEnd < start) continue;
+        if (end < mapStart || mapEnd < start) {
+          deadSeeds!.add(seed);
+          continue;
+        }
         if (start < mapStart) {
           if (end < mapStart) continue;
           else if (end <= mapEnd) {
-            seeds!.delete(seed);
-            newSeeds!.add([start, mapStart - 1]);
+            // seeds!.delete(seed);
+            deadSeeds!.add([start, mapStart - 1]);
             newSeeds!.add([transformStart, transformStart + end - mapStart]);
           } else if (mapEnd < end) {
-            seeds!.delete(seed);
-            newSeeds!.add([start, mapStart - 1]);
+            // seeds!.delete(seed);
+            deadSeeds!.add([start, mapStart - 1]);
             newSeeds!.add([transformStart, transformEnd]);
-            newSeeds!.add([mapEnd + 1, end]);
+            deadSeeds!.add([mapEnd + 1, end]);
           }
         } else if (mapStart <= start) {
           if (end <= mapEnd) {
-            seeds!.delete(seed);
+            // seeds!.delete(seed);
             newSeeds!.add([
               transformStart + start - mapStart,
               transformStart + end - mapStart,
             ]);
           } else if (mapEnd < end) {
-            seeds!.delete(seed);
+            // seeds!.delete(seed);
             newSeeds!.add([transformStart + start - mapStart, transformEnd]);
-            newSeeds!.add([mapEnd + 1, end]);
+            deadSeeds!.add([mapEnd + 1, end]);
           }
         }
         // if (start >= y + range) break;
@@ -79,6 +83,8 @@ for (let i = 0; i < input.length; i++) {
         //   seeds!.delete(seed);
         // }
       }
+
+      seeds = deadSeeds;
 
       i++;
       line = input[i];
