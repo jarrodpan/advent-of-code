@@ -38,4 +38,4 @@ console.log({ ans });
 `
 );
 
-exec(`code ./${arg}/*`);
+exec(`code ./${arg}/index.ts ./${arg}/input.txt ./${arg}/test.txt`);
