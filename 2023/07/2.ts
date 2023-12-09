@@ -64,27 +64,29 @@ const scoreCardList = (cards: number[]) => {
 
 const scoreCardListWithJokers = (cards: number[]) => {
   const jokers = cards.filter((x) => x === 11).length;
+  if (jokers === 5 || jokers === 4) return Hand.FiveOfAKind;
   const otherCards = cards.filter((x) => x !== 11);
   let maxScore = scoreCardList(cards);
   if (maxScore === Hand.FiveOfAKind) return Hand.FiveOfAKind;
 
+  const cardSet = new Set(cards);
+
   console.log('original:', cards);
 
   switch (jokers) {
-    case 5:
-    case 4:
-      return Hand.FiveOfAKind;
     case 3:
       if (otherCards[0] === otherCards[1]) return Hand.FiveOfAKind;
       else return Hand.FourOfAKind;
     case 2:
-      if (otherCards[0] === otherCards[1] && otherCards[1] === otherCards[2])
-        return Hand.FiveOfAKind;
-      if (otherCards[0] === otherCards[1] || otherCards[1] === otherCards[2])
-        return Hand.FourOfAKind;
-      else return Hand.ThreeOfAKind;
+      for (let j of cardSet)
+        for (let i of cardSet) {
+          maxScore = Math.max(maxScore, scoreCardList([i, j, ...otherCards]));
+          console.log([i, j, ...otherCards], maxScore);
+          if (maxScore === Hand.FiveOfAKind) return Hand.FiveOfAKind;
+        }
+      return maxScore;
     case 1:
-      for (let i of new Set(otherCards)) {
+      for (let i of cardSet) {
         maxScore = Math.max(maxScore, scoreCardList([i, ...otherCards]));
         console.log([i, ...otherCards], maxScore);
         if (maxScore === Hand.FiveOfAKind) return Hand.FiveOfAKind;
