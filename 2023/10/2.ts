@@ -134,6 +134,7 @@ for (let i = 0; i < cov.length; i++) {
       case '-':
         continue;
       case '|':
+      case 'S': // for this specific input
         cross++;
         continue;
       case 'F':
@@ -152,12 +153,12 @@ for (let i = 0; i < cov.length; i++) {
 
 const visual = (x: string) => {
   const chars: any = {
-    '|': '║',
-    '-': '═',
-    L: '╚',
-    J: '╝',
-    '7': '╗',
-    F: '╔',
+    '|': chalk.yellow('║'),
+    '-': chalk.yellow('═'),
+    L: chalk.yellow('╚'),
+    J: chalk.yellow('╝'),
+    '7': chalk.yellow('╗'),
+    F: chalk.yellow('╔'),
     S: chalk.bgGreen('+'),
     '.': chalk.bgCyan(' '),
   };
