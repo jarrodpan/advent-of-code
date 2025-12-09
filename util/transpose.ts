@@ -9,3 +9,5 @@ export const transpose = <T extends any>(m: T[][]) => {
   }
   return output as unknown as T[][];
 };
+
+export default transpose;
